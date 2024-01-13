@@ -3,14 +3,15 @@ This is node js project where user can create product and its variants too and d
 
 Deliverables
 Step-1:first step node js project (npm init -y) 
-step-2:Install all needed depandency like mongoose,express,nodemon
+step-2:Install all needed depandency like mongoose,express,nodemon,(for Testing) chai,supertest,mocha,chai-http
 step-3:Step-up index.js file require express and mongoose and start server
 step-4:Create model product and product variants
 step-5:Create controller product and product variants and also searchproduct
 step-6:Create router and all router has sparate file and then create a index.js file where all router require first and then use it and exports to main index.js
 step-7:Require router to routes object and use in main index.js file 
 step-8:Run the code using npm start (i setted it in packege-json start nodemon index.js) and also start mongodb compass
-step-9:Create APIs in Postman 
+step-9:Create Test method for product create and also all CRUD opreations 
+step-10:Create APIs in Postman 
   |-http://localhost:8090/api/product/createproduct
     |-this api for create a product method is POST
   |-http://localhost:8090/api/product/:producId/variants
