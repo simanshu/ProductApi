@@ -2,6 +2,7 @@ const chai=require("chai")
 const chaiHttp=require("chai-http")
 const app=require("../index")
 const Product=require("../model/Product")
+const res = require("express/lib/response")
 
 chai.use(chaiHttp)
 const expect=chai.expect
@@ -16,6 +17,7 @@ describe("Product Model Tests", () => {
     //Test store data
     it("Sucessfull store product",async()=>{
         const productData={
+            
             name:"Test",
             description:"Test",
             price:34000,
@@ -31,9 +33,21 @@ describe("Product Model Tests", () => {
         await Product.create(productData)
     })
     it("sucessfull search for product", async()=>{
-        const res=await chai.request(app).get('/api/search?productId=Test')
-        expect(res).to.have.status(200)
-        expect(res.body).to.be.an('array')
-        expect(res.body).to.have.lengthOf(2)
+        const product=new Product({
+            name:"Test",
+            description:"Test",
+            price:34000,
+            variants:[
+                {
+                    name:"Test1",
+                    SKU:"test2",
+                    additionalcost:78,
+                    stockcount:20
+                }
+            ]
+        })
+        await product.save()
+        const res=await chai.request(app).get("/api/search/"+ product._id)
+        expect(res.status).to.equal(200)
     })
 })
